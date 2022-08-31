@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "Test_terraform"
+  name     = "PetclinicTerraform"
   location = "East US"
 }
 
