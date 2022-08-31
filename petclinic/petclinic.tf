@@ -34,8 +34,6 @@ resource "azurerm_spring_cloud_app" "example" {
 resource "azurerm_spring_cloud_java_deployment" "example" {
   name                = "default"
   spring_cloud_app_id = azurerm_spring_cloud_app.example.id
-  cpu                 = 2
-  memory_in_gb        = 4
   instance_count      = 2
   jvm_options         = "-XX:+PrintGC"
   runtime_version     = "Java_11"
