@@ -16,13 +16,13 @@ provider "azurerm" {
 ### Create Resource group 
 resource "azurerm_resource_group" "sc_corp_rg" {
     name      = Test_terraform
-    location  = East US
+    location  = eastus
 }
 
 ### Create Application Insights
 resource "azurerm_application_insights" "sc_app_insights" {
   name                = var.app_insights_name
-  location            = East US
+  location            = eastus
   resource_group_name = Test_terraform
   application_type    = "web"
   depends_on = [azurerm_resource_group.sc_corp_rg]
@@ -32,7 +32,7 @@ resource "azurerm_application_insights" "sc_app_insights" {
 resource "azurerm_spring_cloud_service" "sc" {
   name                = var.sc_service_name 
   resource_group_name = Test_terraform
-  location            = East US
+  location            = eastus
   sku_name            = "S0"
   
   network {
