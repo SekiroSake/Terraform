@@ -3,12 +3,12 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "PetclinicTerraform"
+  name     = "petclinic-terraform"
   location = "East US"
 }
 
 resource "azurerm_spring_cloud_service" "example" {
-  name                = "example-springcloud"
+  name                = "petclinic-terraform-example-springcloud"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
 
@@ -20,7 +20,7 @@ resource "azurerm_spring_cloud_service" "example" {
 }
 
 resource "azurerm_spring_cloud_app" "example" {
-  name                = "example-springcloudapp"
+  name                = "petclinic-terraform-example-springcloudapp"
   resource_group_name = azurerm_resource_group.example.name
   service_name        = azurerm_spring_cloud_service.example.name
   is_public           = true
