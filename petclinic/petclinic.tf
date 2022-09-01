@@ -7,6 +7,13 @@ resource "azurerm_resource_group" "example" {
   location = "East US"
 }
 
+resource "azurerm_application_insights" "example" {
+  name                = "piggymetrics-test-appinsights"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  application_type    = "web"
+}
+
 resource "azurerm_spring_cloud_service" "example" {
   name                = "piggymetrics-springcloud"
   resource_group_name = azurerm_resource_group.example.name
