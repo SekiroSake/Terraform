@@ -3,25 +3,25 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "piggymetrics_terraform"
+  name     = "petclinic_terraform"
   location = "East US"
 }
 
 resource "azurerm_application_insights" "example" {
-  name                = "piggymetrics-test-appinsights"
+  name                = "petclinic-test-appinsights"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
   application_type    = "web"
 }
 
 resource "azurerm_spring_cloud_service" "example" {
-  name                = "piggymetrics-springcloud"
+  name                = "petclinic-springcloud"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
   sku_name            = "S0"
 
   config_server_git_setting {
-    uri          = "https://github.com/Azure-Samples/piggymetrics"
+    uri          = "https://github.com/azure-samples/spring-petclinic-microservices-config"
     label        = "config"
     search_paths = ["dir1", "dir2"]
   }
@@ -37,7 +37,7 @@ resource "azurerm_spring_cloud_service" "example" {
 }
 
 resource "azurerm_spring_cloud_app" "example" {
-  name                = "piggymetricsapps"
+  name                = "petclinicapps"
   resource_group_name = azurerm_resource_group.example.name
   service_name        = azurerm_spring_cloud_service.example.name
   is_public           = true
